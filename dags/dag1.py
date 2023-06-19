@@ -3,16 +3,10 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 
 
-def hello_world():
+def greetings(message):
+    if i == 'hello":
     print("#############################################")
-    print("  Hello, AIRFLOW!")
-    print((datetime.now() + timedelta(hours=2)).strftime("%y-%m-%d %H:%M:%S"))
-    print("#############################################")
-
-
-def goodby():
-    print("#############################################")
-    print("  Hello, AIRFLOW!")
+    print(f"  {message}, AIRFLOW!")
     print((datetime.now() + timedelta(hours=2)).strftime("%y-%m-%d %H:%M:%S"))
     print("#############################################")
 
@@ -26,7 +20,7 @@ dag = DAG(
 )
 
 # Define the task
-hello_task = PythonOperator(task_id="hello_task", python_callable=hello_world, dag=dag)
+hello_task = PythonOperator(task_id="hello_task", python_callable=greetings, dag=dag, op_kwargs={'message': 'hello'})
 
 # Define the task
 hello_task2 = PythonOperator(
@@ -34,7 +28,7 @@ hello_task2 = PythonOperator(
 )
 
 # Define the task
-goodby_task = PythonOperator(task_id="goodby_task", python_callable=goodby, dag=dag)
+goodby_task = PythonOperator(task_id="goodby_task", python_callable=greetings, dag=dag, op_kwargs={'message': 'goodby'})
 
 # Set the task dependencies
 [hello_task, hello_task2] >> goodby_task
