@@ -10,13 +10,6 @@ def hello_world():
     print("#############################################")
 
 
-def goodby():
-    print("#############################################")
-    print("  Hello, AIRFLOW!")
-    print((datetime.now() + timedelta(hours=2)).strftime("%y-%m-%d %H:%M:%S"))
-    print("#############################################")
-
-
 # Define the DAG
 dag = DAG(
     "hello_world_dag",
@@ -33,8 +26,5 @@ hello_task2 = PythonOperator(
     task_id="hello_task2", python_callable=hello_world, dag=dag
 )
 
-# Define the task
-goodby_task = PythonOperator(task_id="goodby_task", python_callable=goodby, dag=dag)
-
 # Set the task dependencies
-[hello_task, hello_task2] >> goodby_task
+hello_task >> hello_task2
