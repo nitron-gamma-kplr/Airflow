@@ -23,7 +23,7 @@ hello_task = PythonOperator(task_id="hello_task", python_callable=greetings, dag
 
 # Define the task
 hello_task2 = PythonOperator(
-    task_id="hello_task2", python_callable=hello_world, dag=dag
+    task_id="hello_task2", python_callable=greetings, dag=dag
 )
 
 # Define the task
