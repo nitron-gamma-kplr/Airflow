@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 
 
 def greetings(message):
-    if i == 'hello":
     print("#############################################")
     print(f"  {message}, AIRFLOW!")
     print((datetime.now() + timedelta(hours=2)).strftime("%y-%m-%d %H:%M:%S"))
